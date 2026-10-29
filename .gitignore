@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars*
+.env*
+!.env.example
+.DS_Store
+qa/
+.playwright-cli/
+output/
+public/books/
+docs/Cloudflare-Pages-部署状态.json

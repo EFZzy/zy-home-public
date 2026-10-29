@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e7e2d8" />
+    <meta name="description" content="ZY 的私人精神空间。一条走廊，六个房间，收藏阅读、创作与生活的片刻。" />
+    <title>栖间 · ZY 的个人空间</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- 首屏样式随 HTML 到达，模块和完整样式尚未加载时也不会露出裸文字。 -->
+    <style>
+      html,body{margin:0;background:#e7e2d8}
+      body.booting{overflow:hidden}
+      body.booting>:not(#loading):not(noscript):not(script){visibility:hidden!important}
+      #loading{position:fixed;inset:0;background:#e7e2d8;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;transition:opacity .6s;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+      #loading.ready{opacity:0;pointer-events:none}
+      .loading-mark{font-family:Songti SC,STSong,serif;font-size:50px;border:1px solid #68755c;padding:10px 20px;color:#38543e}
+      #loading p{font-size:11px;letter-spacing:3px;margin-top:25px;color:#6b765f}
+      #loading p span{animation:pulse 1.2s infinite}
+      @keyframes pulse{50%{opacity:.2}}
+      @media(prefers-reduced-motion:reduce){#loading{transition:none}#loading p span{animation:none}}
+    </style>
+  </head>
+  <body class="before-entry booting">
+    <canvas tabindex="0" id="world" aria-label="可交互的三维走廊，支持水平 360 度环顾、滚轮前后移动和键盘移动"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <div id="loading" aria-live="polite"><span class="loading-mark">栖</span><p>正在为你开一盏灯 <span>…</span></p></div>
+    <section id="entrance-ui" class="entrance-ui" aria-label="大门入口"><span class="entrance-kicker">A LITTLE WORLD BY ZY</span><h1>欢迎，来我的世界坐坐。</h1><button id="enter-house" class="entrance-button">推开大门 </button><p>门后的故事，等你亲手打开。</p></section>
+    <header class="header">
+      <a href="#corridor" class="brand" aria-label="栖间，返回走廊"><span class="brand-symbol">栖</span><span class="brand-name">栖间<small>ZY’S PERSONAL SPACE</small></span></a>
+      <nav class="header-nav" aria-label="主导航"><button id="home-nav" class="active">漫游</button><button id="map-open">房间索引 </button><button id="about-nav">关于这里</button></nav>
+      <div class="header-right"><span class="open-dot"></span><span>随时，欢迎来坐坐</span><button id="scene-settings" aria-expanded="false" aria-controls="scene-tools" class="icon-button" aria-label="昼夜与附近物件" title="昼夜与附近物件">☼</button><button id="sound" class="icon-button" aria-label="播放背景音乐" title="播放背景音乐" aria-pressed="false">♫<span class="sound-slash"></span></button></div>
+    </header>
+    <main inert>
+      <section id="intro" class="intro">
+        <div class="eyebrow"><span class="tiny-line"></span> A PLACE FOR THE WANDERING MIND</div>
+        <h1>给思想，<br />留一间<span class="title-italic">房。</span></h1>
+        <p class="intro-copy">你好，我是 ZY。<br />把读过的书、做过的事与偶然的灵感，<br />安放在这条小小的走廊里。</p>
+        <button id="explore" class="primary-button">从书房开始 </button>
+        <span class="intro-note">不必着急，每扇门后都有一个世界。</span>
+      </section>
+      <div id="room-caption" class="room-caption" hidden><span class="eyebrow" id="room-eyebrow"></span><h1 id="room-title"></h1><p id="room-description"></p><button id="room-content" class="text-button">探索这个房间</button></div>
+      <div id="hotspots" aria-label="场景交互点"></div>
+      <div class="scene-label"><span id="scene-no">00 / THE CORRIDOR</span><span id="scene-name">思想的回廊</span></div>
+      <div class="vertical-note" aria-hidden="true">READ · CREATE · WANDER · REPEAT</div>
+      <button id="back" class="back-button" hidden>← <span>回到走廊</span><kbd>ESC</kbd></button>
+      <div id="movement" class="movement"><button id="step-back" aria-label="后退">↓</button><span>滚动探索走廊</span><button id="step-forward" aria-label="前进">↑</button><i></i><span>拖动 360° 环顾 · 点击房门进入</span></div>
+      <div id="room-actions" class="room-actions" hidden></div>
+      <div id="walk-status" class="walk-status" role="status" hidden></div>
+      <div id="hint" class="interaction-hint" hidden></div>
+    </main>
+    <footer class="footer" inert>
+      <div class="footer-heading"><span class="eyebrow">THE ROOMS</span><span>六个房间，一些关于我的碎片</span></div>
+      <nav id="room-nav" class="room-nav" aria-label="选择房间"></nav>
+      <div class="footer-bottom"><span>© <span id="year"></span> ZY · 慢慢来，也没关系。</span><span>一个可以走进去的个人主页 <span class="cross">✳</span></span></div>
+    </footer>
+    <dialog id="panel" aria-labelledby="panel-title"><div class="panel-top"><span id="panel-kicker" class="eyebrow"></span><button id="panel-close" class="icon-button" aria-label="关闭面板">×</button></div><div id="panel-body"></div></dialog>
+    <aside id="scene-tools" class="scene-tools" aria-label="场景设置" hidden>
+      <div class="scene-tools-heading"><strong>光与生活</strong><button id="scene-tools-close" aria-label="关闭场景设置">×</button></div>
+      <fieldset><legend>此刻的光</legend><div class="time-modes"><button data-time="auto" aria-pressed="true">随时间</button><button data-time="day" aria-pressed="false">白昼</button><button data-time="night" aria-pressed="false">夜晚</button></div></fieldset>
+      <p class="tools-note">夜间自动点灯，也可直接点击灯具开关。</p>
+      <h2>附近可以互动的物件</h2><div id="nearby-objects" class="nearby-objects"></div>
+    </aside>
+    <div id="toast" role="status" hidden></div>
+    <noscript><style>#loading{display:none}</style><div class="no-script"><h1>栖间 · ZY 的个人空间</h1><p>请启用 JavaScript 进入三维走廊，探索书房、作品室、实验室、手记、听音室和会客厅。</p></div></noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
