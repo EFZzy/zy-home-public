@@ -4,6 +4,26 @@
 
 本版本保留场景与交互，书房的课程和书籍列表为空，不包含课程 PDF、原资料清单、个人笔记或私人仓库历史。作品、随笔与个人介绍保留演示内容；书房中的实体书本是场景装饰。
 
+## 场景预览
+
+实际运行截图；书房仅保留场景装饰，资料目录为空。
+
+### 推开大门
+
+![大门与庭院](docs/images/entrance.jpg)
+
+### 沿着走廊探索
+
+![连接六个房间的走廊](docs/images/corridor.jpg)
+
+| 书房 | 作品室 |
+| --- | --- |
+| ![书房与书桌](docs/images/study.jpg) | ![作品室](docs/images/gallery.jpg) |
+| 实验室 | 手记 |
+| ![单摆实验室](docs/images/lab.jpg) | ![手记房间](docs/images/journal.jpg) |
+| 听音室 | 会客厅 |
+| ![听音室](docs/images/music.jpg) | ![会客厅](docs/images/about.jpg) |
+
 ## 本地运行
 
 使用 Node.js 24（见 `.nvmrc`）。
