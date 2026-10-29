@@ -62,4 +62,4 @@ Cloudflare Pages 构建命令为 `npm run build`，输出目录为 `dist`，根�
 
 ## 参考与素材
 
-空间交互结构参考 [ITomPoland/portfolio-itom](https://github.com/ITomPoland/portfolio-itom)。场景几何与绘画纹理由程序生成。PDF.js 的许可证及相关字体、解码资源许可保留于 `public/pdfjs/`。
+空间交互结构参考 [ITomPoland/portfolio-itom](https://github.com/ITomPoland/portfolio-itom)。PDF.js 的许可证及相关字体、解码资源许可保留于 `public/pdfjs/`。
